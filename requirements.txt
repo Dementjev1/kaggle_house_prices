@@ -1,0 +1,8 @@
+pandas
+matplotlib
+scikit-learn
+torch
+numpy
+
+ipykernel
+lightgbm

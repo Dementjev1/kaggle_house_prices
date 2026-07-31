@@ -1,1 +1,5 @@
 .venv
+data
+results.txt
+results.csv
+model.txt
