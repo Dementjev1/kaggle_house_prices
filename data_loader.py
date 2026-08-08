@@ -17,7 +17,7 @@ def split_data(path:str,stage='lgb',cols_drop=[]) -> tuple:
     df = pd.read_csv(path, encoding='utf8')
     if stage == 'df':
         return df
-    df['SalePrice'] = np.log1p(df['SalePrice'])
+    # df['SalePrice'] = np.log1p(df['SalePrice']) Seems too random 
     X = df.drop(columns_to_drop, axis=1)
     y = df['SalePrice']
     
@@ -28,6 +28,9 @@ def split_data(path:str,stage='lgb',cols_drop=[]) -> tuple:
     
 
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.25, random_state=42) 
+
+    if stage == 'xy':
+        return X_train, X_val, y_train, y_val
 
     train_data = lgb.Dataset(X_train, label=y_train, categorical_feature=list(cat_cols))
     test_data = lgb.Dataset(X_val, label=y_val, reference=train_data)
